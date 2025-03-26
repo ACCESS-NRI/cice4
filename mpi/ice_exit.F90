@@ -66,6 +66,8 @@
 !EOP
 !
       integer (int_kind) :: ierr ! MPI error flag
+      ! MPI error flag, default to non-zero error
+      integer (int_kind) :: errorcode = 1
 
 #if (defined CCSM) || (defined SEQ_MCT)
       call shr_sys_abort(error_message)
@@ -75,7 +77,13 @@
       write (ice_stderr,*) error_message
       call flush_fileunit(ice_stderr)
 
-      call MPI_ABORT(MPI_COMM_WORLD, ierr)
+#if defined(__INTEL_COMPILER)
+      call TRACEBACKQQ(USER_EXIT_CODE=-1)
+#elif defined(__GFORTRAN__)
+      call BACKTRACE()
+#endif
+
+      call MPI_ABORT(MPI_COMM_WORLD, errorcode, ierr)
       stop
 #endif
 
