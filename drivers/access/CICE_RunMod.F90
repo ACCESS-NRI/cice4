@@ -371,7 +371,9 @@
    ! end of timestep loop
    !--------------------------------------------------------------------
 
-      call ice_timer_stop(timer_step)   ! end timestepping loop timer     
+      call ice_timer_stop(timer_step)   ! end timestepping loop timer   
+      
+      call abort_ice('SPENCERS ERROR')
 !
 !EOC
 !
