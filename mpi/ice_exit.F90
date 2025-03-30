@@ -77,6 +77,16 @@
       write (ice_stderr,*) error_message
       call flush_fileunit(ice_stderr)
 
+#if defined(__INTEL_COMPILER)
+      call TRACEBACKQQ(USER_EXIT_CODE=-1)
+      write (ice_stderr,*) "SPENCER INTEL COMPILER"
+      call flush_fileunit(ice_stderr)
+#elif defined(__GFORTRAN__)
+      write (ice_stderr,*) "SPENCER GFORTRAN"
+      call flush_fileunit(ice_stderr)
+      call BACKTRACE()
+#endif
+
       call MPI_ABORT(MPI_COMM_WORLD, errorcode, ierr)
       stop
 #endif
