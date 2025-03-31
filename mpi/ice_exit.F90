@@ -76,6 +76,7 @@
 
       write (ice_stderr,*) error_message
       call flush_fileunit(ice_stderr)
+      write(ice_stderr,*) "SPENCER: COMPILER", __INTEL_COMPILER
       
 #if defined(__INTEL_COMPILER)
       write (ice_stderr,*) "SPENCER INTEL COMPILER"
