@@ -69,6 +69,14 @@
       ! MPI error flag, default to non-zero error
       integer (int_kind) :: errorcode = 1
 
+#ifdef __INTEL_COMPILER
+        write (ice_stdout, *) "SPENCER __INTEL_COMPILER DEFINED"
+#endif
+#ifndef __INTEL_COMPILER
+        write (ice_stdout, *) "SPENCER __INTEL_COMPILER NOT DEFINED"
+#endif
+
+
 #if (defined CCSM) || (defined SEQ_MCT)
       call shr_sys_abort(error_message)
 #else
@@ -76,7 +84,6 @@
 
       write (ice_stderr,*) error_message
       call flush_fileunit(ice_stderr)
-      write(ice_stderr,*) "SPENCER: COMPILER", __INTEL_COMPILER
       
 #if defined(__INTEL_COMPILER)
       write (ice_stderr,*) "SPENCER INTEL COMPILER"
