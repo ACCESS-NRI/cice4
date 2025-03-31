@@ -76,6 +76,13 @@
         write (ice_stdout, *) "SPENCER __INTEL_COMPILER NOT DEFINED"
 #endif
 
+#ifdef __ICC
+        write (ice_stdout, *) "SPENCER __ICC DEFINED"
+#endif
+#ifndef __ICC
+        write (ice_stdout, *) "SPENCER __ICC NOT DEFINED"
+#endif
+
 
 #if (defined CCSM) || (defined SEQ_MCT)
       call shr_sys_abort(error_message)
