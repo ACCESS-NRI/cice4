@@ -65,9 +65,9 @@
 !
 !EOP
 !
-      integer (int_kind) :: ierr ! MPI error flag
-      ! MPI error code, default to non-zero error
-      integer (int_kind) :: errorcode = 1
+      integer (int_kind) :: &
+            ierr,          & ! MPI error flag
+            error_code = 128 ! MPI error code, default to non-zero error
 
 #if (defined CCSM) || (defined SEQ_MCT)
       call shr_sys_abort(error_message)
@@ -77,7 +77,7 @@
       write (ice_stderr,*) error_message
       call flush_fileunit(ice_stderr)
 
-      call MPI_ABORT(MPI_COMM_WORLD, errorcode, ierr)
+      call MPI_ABORT(MPI_COMM_WORLD, error_code, ierr)
       stop
 #endif
 
