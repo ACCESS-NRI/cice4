@@ -71,7 +71,7 @@
       integer (kind=int_kind), parameter :: &
          ice_stdin  =  5, & ! reserved unit for standard input
          ice_stdout =  6, & ! reserved unit for standard output
-         ice_stderr =  6    ! reserved unit for standard error
+         ice_stderr =  0    ! reserved unit for standard error
 !EOP
 !BOC
       integer (kind=int_kind), parameter :: &
