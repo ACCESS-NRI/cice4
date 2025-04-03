@@ -70,19 +70,11 @@
       integer (int_kind) :: errorcode = 1
 
 #ifdef __INTEL_COMPILER
-        write (ice_stdout, *) "SPENCER __INTEL_COMPILER DEFINED"
+#warning INTEL COMPILER DETECTED
 #endif
 #ifndef __INTEL_COMPILER
-        write (ice_stdout, *) "SPENCER __INTEL_COMPILER NOT DEFINED"
+#warning INTEL COMPILER NOT DETECTED
 #endif
-
-#ifdef __ICC
-        write (ice_stdout, *) "SPENCER __ICC DEFINED"
-#endif
-#ifndef __ICC
-        write (ice_stdout, *) "SPENCER __ICC NOT DEFINED"
-#endif
-
 
 #if (defined CCSM) || (defined SEQ_MCT)
       call shr_sys_abort(error_message)
@@ -91,16 +83,6 @@
 
       write (ice_stderr,*) error_message
       call flush_fileunit(ice_stderr)
-      
-#if defined(__INTEL_COMPILER)
-      write (ice_stderr,*) "SPENCER INTEL COMPILER"
-      call flush_fileunit(ice_stderr)
-      call TRACEBACKQQ("SPENCER_TEST", -1)
-#elif defined(__GFORTRAN__)
-      write (ice_stderr,*) "SPENCER GFORTRAN"
-      call flush_fileunit(ice_stderr)
-      call BACKTRACE()
-#endif
 
       call MPI_ABORT(MPI_COMM_WORLD, errorcode, ierr)
       stop
