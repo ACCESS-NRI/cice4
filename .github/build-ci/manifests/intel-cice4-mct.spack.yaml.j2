@@ -1,8 +1,11 @@
 # Building OASIS3-mct stand-alone using access-esm1.5 spack version
 spack:
   specs:
-  - 'oasis3-mct@git.{{ ref }}=access-esm1.5'
+  - 'cice4@git.{{ ref }}=access-esm1.5'
   packages:
+    oasis3-mct:
+      require:
+        - '@git.access-esm1.5_2024.05.24=access-esm1.5'
     openmpi:
       require:
         - '@4.0.2'
@@ -17,7 +20,8 @@ spack:
         - '@1.10.11'
     all:
       require:
-      - '%{{ intel_compiler }} target={{ target }}'
+      - '%{{ intel_compiler }}'
+      - 'target={{ target }}'
   concretizer:
     unify: false
   view: false
