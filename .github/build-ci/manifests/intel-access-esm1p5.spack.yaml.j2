@@ -1,5 +1,5 @@
 # Building CICE4 in the context of the ACCESS-ESM1.5 model
-# Using the ACCESS-ESM1.5 spack.yaml from 
+# Using the ACCESS-ESM1.5 spack.yaml from
 # https://github.com/ACCESS-NRI/ACCESS-ESM1.5/blob/c3900a91c992ff2586e353339a41dbd274ae1afb/spack.yaml
 spack:
   specs:
@@ -10,7 +10,7 @@ spack:
         - '@git.access-esm1.5-2025.03.002=access-esm1.5'
     cice4:
       require:
-        - '@git.access-esm1.5-2025.04.001=access-esm1.5'
+        - '@git.{{ ref }}=access-esm1.5'
     um7:
       require:
         - '@git.2024.10.17=access-esm1.5'
@@ -32,12 +32,12 @@ spack:
     hdf5:
       require:
         - '@1.10.11'
-    gcc-runtime:
+    intel-oneapi-compilers-classic:
       require:
-      - '%gcc target={{ target }}'
+      - '@{{ intel_compiler_version }}'
     all:
       require:
-      - '%{{ intel_compiler }}'
+      - '%access_intel'
       - 'target={{ target }}'
   view: false
   concretizer:
