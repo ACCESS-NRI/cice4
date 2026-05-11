@@ -18,9 +18,12 @@ spack:
     hdf5:
       require:
         - '@1.10.11'
+    intel-oneapi-compilers-classic:
+      require:
+      - '@{{ intel_compiler_version }}'
     all:
       require:
-      - '%{{ intel_compiler }}'
+      - '%access_intel'
       - 'target={{ target }}'
   concretizer:
     unify: false
