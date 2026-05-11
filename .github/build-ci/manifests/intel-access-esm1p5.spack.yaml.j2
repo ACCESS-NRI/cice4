@@ -3,11 +3,11 @@
 # https://github.com/ACCESS-NRI/ACCESS-ESM1.5/blob/c3900a91c992ff2586e353339a41dbd274ae1afb/spack.yaml
 spack:
   specs:
-    - access-esm1p5@git.2024.12.1
+    - access-esm1p5
   packages:
     mom5:
       require:
-        - access-esm1p5
+        - '@git.access-esm1.5-2025.03.002=access-esm1.5'
     cice4:
       require:
         - '@git.{{ ref }}=access-esm1.5'
