@@ -2,9 +2,9 @@ packages:
   oasis3-mct:
     require:
       - '@git.access-esm1.5_2024.05.24=access-esm1.5'
-  openmpi:
-    require:
-      - '@4.0.2'
+  #openmpi:
+  #  require:
+  #    - '@4.0.2'
   netcdf-c:
     require:
       - '@4.7.4'
