@@ -6,7 +6,7 @@ spack:
   # Include configuration from this repository, with the environment variable defined in build-ci
   - path: $SPACK_MANIFEST_REPOSITORY_PATH/.github/build-ci/config
   specs:
-    - access-esm1p5 %%access_intel
+    - access-esm1p5
   packages:
     mom5:
       require:
@@ -20,6 +20,9 @@ spack:
     gcom4:
       require:
         - '@git.2024.05.28=access-esm1.5'
+    all:
+      require:
+      - '%access_intel'
   view: false
   repos:
     access_spack_packages:
